@@ -1,5 +1,6 @@
 import { productExceptSelf } from './productSelf';
 
+// Test cases were written by Claude AI
 describe('productExceptSelf', () => {
   // Test case 1: Basic functionality with positive integers
   test('should return correct products for [1, 2, 3, 4]', () => {
