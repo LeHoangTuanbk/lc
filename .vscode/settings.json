@@ -3,5 +3,9 @@
   "code-runner.clearPreviousOutput": true,
   "code-runner.executorMap": {
     "typescript": "npx ts-node"
-  }
+  },
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

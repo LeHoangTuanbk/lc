@@ -1,5 +1,5 @@
-To practice LC
+# Homework at engineer pro dsa1 course
 
-# Stack
+## Stack
 
 TS, Jest, Code runner
