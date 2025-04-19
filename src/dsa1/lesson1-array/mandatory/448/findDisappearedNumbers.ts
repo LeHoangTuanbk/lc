@@ -1,4 +1,5 @@
-function findDisappearedNumbers1(nums: number[]): number[] {
+// Solution 1: Space complexity: O(n)
+function findDisappearedNumbers(nums: number[]): number[] {
   const lengthOfNums = nums.length;
   const array1ToN: boolean[] = Array(lengthOfNums + 1).fill(0);
   for (let i = 0; i < lengthOfNums; i++) {
@@ -13,7 +14,8 @@ function findDisappearedNumbers1(nums: number[]): number[] {
   return res;
 }
 
-function findDisappearedNumbers(nums: number[]): number[] {
+// Solution 2: Optimized Space to O(1)
+function findDisappearedNumbers2(nums: number[]): number[] {
   const lengthOfNums = nums.length;
   for (let i = 0; i < lengthOfNums; i++) {
     nums[Math.abs(nums[i]) - 1] = -Math.abs(nums[Math.abs(nums[i]) - 1]);
@@ -26,5 +28,3 @@ function findDisappearedNumbers(nums: number[]): number[] {
   }
   return res;
 }
-
-findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]);
