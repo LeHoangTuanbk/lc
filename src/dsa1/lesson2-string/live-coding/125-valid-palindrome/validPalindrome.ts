@@ -1,5 +1,5 @@
 export function isPalindrome(s: string): boolean {
-  const allValidLetter = s
+  const allValidLetters = s
     .split('')
     .map((c) => c.toLocaleLowerCase())
     .filter((c) => {
@@ -12,9 +12,9 @@ export function isPalindrome(s: string): boolean {
       return false;
     });
   let i = 0,
-    j = allValidLetter.length - 1;
+    j = allValidLetters.length - 1;
   while (i <= j) {
-    if (allValidLetter[i] != allValidLetter[j]) {
+    if (allValidLetters[i] != allValidLetters[j]) {
       return false;
     }
     i++;
