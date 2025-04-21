@@ -7,5 +7,6 @@
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "jest.runMode": "on-demand"
 }

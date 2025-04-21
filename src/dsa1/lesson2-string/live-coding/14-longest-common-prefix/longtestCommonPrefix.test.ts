@@ -1,6 +1,6 @@
 import { longestCommonPrefix } from './longestCommonPrefix';
 
-describe('functionName', () => {
+describe('longestCommonPrefix', () => {
   describe('core cases', () => {
     test('should handle normal input correctly', () => {
       const normalInput = ['flower', 'flow', 'flight'];
