@@ -1,4 +1,4 @@
-import { spiralOrder } from './sprialOrder';
+import { spiralOrder } from './spiralOrder';
 
 describe('rotate', () => {
   describe('core cases', () => {
