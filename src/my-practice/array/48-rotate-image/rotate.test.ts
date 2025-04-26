@@ -14,7 +14,7 @@ describe('rotate', () => {
         [9, 6, 3],
       ];
       rotate(matrix);
-      expect(matrix).toBe(expectedOutput);
+      expect(matrix).toEqual(expectedOutput);
     });
     test('should handle normal input case 3 correctly', () => {
       const matrix = [
@@ -30,7 +30,7 @@ describe('rotate', () => {
         [16, 7, 10, 11],
       ];
       rotate(matrix);
-      expect(matrix).toBe(expectedOutput);
+      expect(matrix).toEqual(expectedOutput);
     });
   });
 });
