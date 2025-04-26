@@ -13,6 +13,7 @@ export function kthGrammar2(n: number, k: number): number {
   return parseInt(table[n - 1][k - 1]);
 }
 
+// Time : O(n)
 export function kthGrammar(n: number, k: number): number {
   if (n == 1) return 0;
   const length = Math.pow(2, n - 1);
