@@ -1,5 +1,5 @@
 // Time: nlogn
-export function smallerNumbersThanCurrent(nums: number[]): number[] {
+export function smallerNumbersThanCurrent2(nums: number[]): number[] {
   let n = nums.length;
   let temp: number[][] = new Array(n).fill(0).map(() => new Array(2).fill(0));
   for (let i = 0; i < n; i++) {
@@ -16,4 +16,16 @@ export function smallerNumbersThanCurrent(nums: number[]): number[] {
     }
   }
   return res;
+}
+
+export function smallerNumbersThanCurrent(nums: number[]): number[] {
+  const countingSort = Array(101).fill(0);
+  for (const num of nums) {
+    countingSort[num]++;
+  }
+  const lessCount = Array(101).fill(0);
+  for (let i = 1; i < 101; i++) {
+    lessCount[i] = lessCount[i - 1] + countingSort[i - 1];
+  }
+  return nums.map((num) => lessCount[num]);
 }
