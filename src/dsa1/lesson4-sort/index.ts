@@ -39,6 +39,8 @@ function sortTheStudents(score: number[][], k: number): number[][] {
   return score.sort((a, b) => a[k] - a[k]);
 }
 
-function relativeSortArray(arr1: number[], arr2: number[]): number[] {
-  let count = new Array(1001);
-}
+const a = 1 << 31;
+console.log(a);
+
+const unsigned = (1 << 31) >>> 0; // 2147483648
+console.log(unsigned);
