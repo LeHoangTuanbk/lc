@@ -1,7 +1,3 @@
-function binarySearch(arr: number[], low: number, high: number, x: number): number {
-  return -1;
-}
-
 /**
  * Forward declaration of guess API.
  * @param {number} num   your guess
@@ -44,24 +40,6 @@ function isPerfectSquare(num: number): boolean {
   return false;
 }
 
-function arrangeCoins(n: number): number {
-  let low = 1,
-    high = n,
-    res = 0;
-  while (low <= high) {
-    let k = low + Math.floor((high - low) / 2);
-    let coinNeed = (k * (k + 1)) / 2;
-    if (n >= coinNeed) {
-      res = Math.max(res, k);
-      low = k + 1;
-    } else {
-      high = k - 1;
-    }
-  }
-  return res;
-}
-
-arrangeCoins(5);
 /*
 Input: nums = [1,1,2,3,3,4,4,8,8]
 Output: 2
