@@ -1,14 +1,5 @@
-import { ListNode, middleNode } from './middleNode';
-
-function createLinkedList(values: number[]): ListNode {
-  const head = new ListNode(values[0]);
-  let current = head;
-  for (let i = 1; i < values.length; i++) {
-    current.next = new ListNode(values[i]);
-    current = current.next;
-  }
-  return head;
-}
+import { middleNode } from './middleNode';
+import { createLinkedList } from '../linkedList';
 
 describe('middleNode()', () => {
   it('should return middle for odd-length list', () => {
