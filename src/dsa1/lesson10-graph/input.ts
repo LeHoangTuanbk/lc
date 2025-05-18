@@ -1,8 +1,6 @@
-export {};
-
 import readline from 'readline';
 
-function ask(query?: string): Promise<string> {
+export function input(query?: string): Promise<string> {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -14,10 +12,3 @@ function ask(query?: string): Promise<string> {
     }),
   );
 }
-
-async function main() {
-  const a = await ask('Nhập gì đó: ');
-  console.log('Bạn đã nhập:', a);
-}
-
-main();
