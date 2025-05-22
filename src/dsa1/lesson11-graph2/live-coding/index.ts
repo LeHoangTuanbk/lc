@@ -29,27 +29,6 @@ function isSymmetric(root: TreeNode | null): boolean {
   }
 }
 
-class _Node {
-  val: number;
-  children: _Node[];
-
-  constructor(val?: number, children?: _Node[]) {
-    this.val = val === undefined ? 0 : val;
-    this.children = children === undefined ? [] : children;
-  }
-}
-
-function maxDepth(root: _Node | null): number {
-  if (root === null) return 0;
-  let d = 0;
-  if (root.children) {
-    for (const child of root.children) {
-      d = Math.max(d, maxDepth(child));
-    }
-  }
-  return d + 1;
-}
-
 function pathSum(root: TreeNode | null, targetSum: number): number[][] {
   const s: number[] = [],
     res: number[][] = [];
