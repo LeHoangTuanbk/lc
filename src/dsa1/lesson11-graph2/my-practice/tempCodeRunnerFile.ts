@@ -1,0 +1,1 @@
+process.stdout.write(' '.repeat(level) + node.value);
