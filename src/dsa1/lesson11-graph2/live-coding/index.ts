@@ -23,12 +23,6 @@ class TreeNode {
   }
 }
 
-function isSymmetric(root: TreeNode | null): boolean {
-  function isMirror(left: TreeNode | null, right: TreeNode | null) {
-    // so sanh trai = phai,
-  }
-}
-
 function pathSum(root: TreeNode | null, targetSum: number): number[][] {
   const s: number[] = [],
     res: number[][] = [];
