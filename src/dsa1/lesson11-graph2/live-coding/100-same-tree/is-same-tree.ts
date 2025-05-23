@@ -1,4 +1,4 @@
-import { BinaryTreeNode } from '../tree-node';
+import { BinaryTreeNode } from '../../tree-node';
 function isSameTree(p: BinaryTreeNode | null, q: BinaryTreeNode | null): boolean {
   if (q === null && p === null) return true;
   if (p === null || q === null) return false;
