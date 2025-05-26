@@ -1,59 +1,3 @@
-export function bfsWithDistance(adj: number[][], start: number): number[] {
-  const n = adj.length;
-  const distance = Array(n).fill(-1);
-  const visited = Array(n).fill(false);
-  const queue: number[] = [];
-  distance[start] = 0;
-  visited[start] = true;
-  queue.push(start);
-  const res: number[] = [];
-
-  while (queue.length) {
-    const u = queue.shift()!;
-    res.push(u);
-    for (const v of adj[u]) {
-      if (!visited[v]) {
-        visited[v] = true;
-        distance[v] = distance[u] + 1;
-        queue.push(v);
-      }
-    }
-  }
-  console.log(res);
-  return distance;
-}
-
-const graph = [[1, 2], [0, 3, 4], [0, 5], [1], [1], [2]];
-
-console.log(bfsWithDistance(graph, 0));
-
-function validPath(n: number, edges: number[][], source: number, destination: number): boolean {
-  const distance = Array(n).fill(-1);
-  const visited = Array(n).fill(false);
-  const queue: number[] = [];
-  distance[source] = 0;
-  visited[source] = true;
-  queue.push(source);
-
-  const adj: number[][] = [];
-  for (const edge of edges) {
-    adj[edge[0]].push(edge[1]);
-    adj[edge[1]].push(edge[0]);
-  }
-
-  while (queue.length) {
-    const u = queue.shift()!;
-    for (const v of adj[u]) {
-      if (!visited[v]) {
-        visited[v] = true;
-        distance[v] = distance[u] + 1;
-        queue.push(v);
-      }
-    }
-  }
-  return visited[destination];
-}
-
 const inf = 10e9;
 const directions = [
   [-1, -1],
@@ -66,14 +10,7 @@ const directions = [
   [1, 1],
 ];
 
-// function shortestPathBinaryMatrix(grid: number[][]): number {
-//   const n = grid.length;
-//   if (grid[0][0] || grid[n - 1][n - 1]) {
-//     return -1;
-//   }
-//   const queue: number[][] = [];
-//   const distance = Array(n).fill(-1);
-// }
+
 
 export function shortestPathBinaryMatrix2(grid: number[][]): number {
   const n = grid.length;
