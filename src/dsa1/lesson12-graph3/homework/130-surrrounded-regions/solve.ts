@@ -59,4 +59,5 @@ export function solve(board: string[][]): void {
 
 /**
  * Space may be optimized by using a temp value: board[i][j] = "T" when visit. Finally, check T -> change to O, check O, flip to X
+ * Pattern: Boundary BFS
  */
