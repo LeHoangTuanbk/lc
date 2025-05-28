@@ -9,6 +9,7 @@ function dfsTraversal(n: number, graph: Map<number, number[]>) {
         dfs(v);
       }
     }
+    console.log(u);
   }
   for (let i = 0; i < n; i++) {
     if (!visited[i]) {
