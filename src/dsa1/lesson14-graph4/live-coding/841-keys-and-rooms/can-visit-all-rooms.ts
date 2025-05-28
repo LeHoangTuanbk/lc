@@ -22,3 +22,14 @@ export function canVisitAllRooms(rooms: number[][]): boolean {
 Input: rooms = [[1],[2],[3],[]]
 Output: true
 */
+
+function dfs2(cur: number, graph: number[][], visited: boolean[]) {
+  visited[cur] = true;
+  for (const u of graph[cur]) {
+    if (visited[cur]) {
+      continue;
+    }
+    dfs2(u, graph, visited);
+  }
+}
+// for...of... if visited, dfs2
