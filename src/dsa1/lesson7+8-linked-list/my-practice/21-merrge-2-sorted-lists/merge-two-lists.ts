@@ -10,7 +10,7 @@
  * }
  */
 import { ListNode } from '../../live-coding/linkedList';
-export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+export function mergeTwoLists11(list1: ListNode | null, list2: ListNode | null): ListNode | null {
   if (!list1) return list2;
   if (!list2) return list1;
 
@@ -50,4 +50,26 @@ export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): L
   }
 
   return head;
+}
+
+export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+  const dummy = new ListNode(-1); // store head
+  let cur = dummy; // store tail
+
+  while (list1 && list2) {
+    let temp: ListNode;
+    if (list1.val < list2.val) {
+      temp = list1;
+      list1 = list1.next;
+    } else {
+      temp = list2;
+      list2 = list2.next;
+    }
+    cur.next = temp;
+    cur = cur.next;
+  }
+
+  cur.next = list1 || list2;
+
+  return dummy.next;
 }
