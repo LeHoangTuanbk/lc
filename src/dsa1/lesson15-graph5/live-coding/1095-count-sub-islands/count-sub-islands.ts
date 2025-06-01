@@ -8,9 +8,9 @@ const dirs = [
 export function countSubIslands(grid1: number[][], grid2: number[][]): number {
   const m = grid2.length;
   const n = grid2[0].length;
-  const visited: boolean[][] = Array.from({ length: m }, () => {
-    return Array(n).fill(false);
-  });
+  const visited: boolean[][] = Array.from({ length: m }, () =>
+    Array.from({ length: n }, () => false),
+  );
 
   let res = 0;
   for (let i = 0; i < m; i++) {
