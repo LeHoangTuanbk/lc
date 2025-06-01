@@ -49,7 +49,7 @@ function dfs(
   for (const [dx, dy] of dirs) {
     const x2 = x + dx;
     const y2 = y + dy;
-    if (inside(x2, y2, m, n) && y2 < n && !visited[x2][y2] && grid[x2][y2]) {
+    if (inside(x2, y2, m, n) && !visited[x2][y2] && grid[x2][y2]) {
       dfs(x2, y2, m, n, grid, visited, component);
     }
   }
