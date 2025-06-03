@@ -76,7 +76,9 @@ export function findFarmland2(land: number[][]): number[][] {
 
       let row = i,
         col = j;
+      // Bottom
       while (row + 1 < n && land[row + 1][j] === 1) row++;
+      // Right
       while (col + 1 < m && land[i][col + 1] === 1) col++;
 
       for (let r = i; r <= row; r++) {
