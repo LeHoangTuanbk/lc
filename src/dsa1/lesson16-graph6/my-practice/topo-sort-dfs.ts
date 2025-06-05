@@ -26,6 +26,7 @@ export function topologicalSortDFS(n: number, graph: number[][]) {
     dfs(i, visited, graph, res);
     if (hasCycle) return [];
   }
+
   return res.reverse();
 }
 
