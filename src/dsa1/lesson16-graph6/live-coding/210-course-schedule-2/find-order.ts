@@ -1,4 +1,4 @@
-export function canFinish(numCourses: number, prerequisites: number[][]): boolean {
+function findOrder(numCourses: number, prerequisites: number[][]): number[] {
   const n = numCourses;
   const inDegree: number[] = Array(n).fill(0);
   const graph: number[][] = Array.from({ length: n }, () => []);
@@ -16,8 +16,10 @@ export function canFinish(numCourses: number, prerequisites: number[][]): boolea
   }
 
   let idx = 0;
+  let res: number[] = [];
   while (q.length) {
     const cur = q.shift()!;
+    res.push(cur);
     idx++;
     for (const u of graph[cur]) {
       inDegree[u]--;
@@ -26,5 +28,7 @@ export function canFinish(numCourses: number, prerequisites: number[][]): boolea
       }
     }
   }
-  return idx === n;
+
+  if (idx < n) return [];
+  return res;
 }
