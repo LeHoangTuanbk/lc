@@ -1,14 +1,12 @@
 export function findMinHeightTrees(n: number, edges: number[][]): number[] {
   if (n == 1) return [0];
   const inDegree: number[] = Array(n).fill(0);
-  const graph: Map<number, number[]> = new Map();
+  const graph = Array.from({ length: n }, () => []);
   for (const [u, v] of edges) {
     inDegree[u]++;
     inDegree[v]++;
-    if (!graph.has(u)) graph.set(u, []);
-    if (!graph.has(v)) graph.set(v, []);
-    graph.get(u)!.push(v);
-    graph.get(v)!.push(u);
+    graph[u].push(v);
+    graph[v].push(u);
   }
   let leaves: number[] = [];
   for (let i = 0; i < n; i++) {
@@ -21,12 +19,13 @@ export function findMinHeightTrees(n: number, edges: number[][]): number[] {
     remainingNodes -= leaves.length;
     const newLeaves: number[] = [];
     for (const leaf of leaves) {
-      for (const v of graph.get(leaf)) {
+      for (const v of graph[leaf]) {
         inDegree[v]--;
         if (inDegree[v] == 1) {
           newLeaves.push(v);
         }
       }
+      graph[leaf] = [];
     }
     leaves = newLeaves;
   }
