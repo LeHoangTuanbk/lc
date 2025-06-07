@@ -20,7 +20,7 @@ export function findMinimumConference(interval: number[][]): number {
 
 /* 
 [0,                    ,30],
-  [5,    10], 
+  [5,  10], 
              [15, 20],
 
 0 5 15
