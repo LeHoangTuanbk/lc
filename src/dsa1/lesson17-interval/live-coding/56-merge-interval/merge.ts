@@ -37,6 +37,7 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 */
 
 type Interval = [number, number];
+
 function groupNonOverlapping(intervals: Interval[]): Interval[][] {
   intervals.sort((a, b) => a[START] - b[START]);
   const res: Interval[][] = [];
@@ -56,7 +57,6 @@ function groupNonOverlapping(intervals: Interval[]): Interval[][] {
     }
     currentEnd = Math.max(currentEnd, end);
   }
-
   res.push(group);
 
   return res;
