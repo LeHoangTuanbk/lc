@@ -10,35 +10,5 @@ export function insert(intervals: number[][], newInterval: number[]): number[][]
     new
   }
 
-  while0
+  while()
 }
-
-export function eraseOverlapIntervals(intervals: number[][]): number {
-  intervals.sort((a, b) => a[0] - b[0]);
-  let last = -1e9;
-  let res = 0;
-  for(const interval of intervals) {
-    if(interval[0] >= last) {
-      last = interval[1]
-    } else {
-      res++;
-      last = Math.min(last, interval[1])
-    }
-  }
-  return res;
-};
-
-
-export function eraseOverlapIntervals1(intervals: number[][]): number {
-  intervals.sort((a, b) => a[1] - b[1]);
-  let last = -1e9;
-  let res = 0;
-  for(const interval of intervals) {
-    if(interval[0] >= last) {
-      last = interval[1]
-    } else {
-      res++;
-    }
-  }
-  return res;
-};
