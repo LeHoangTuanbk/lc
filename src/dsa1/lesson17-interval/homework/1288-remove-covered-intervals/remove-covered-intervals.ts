@@ -1,10 +1,12 @@
 const START = 0;
 const END = 1;
 export function removeCoveredIntervals(intervals: number[][]): number {
-  intervals.sort((a, b) => {
-    if (a[START] == b[START]) return b[END] - a[END];
-    return a[START] - b[START];
-  });
+  // intervals.sort((a, b) => {
+  //   if (a[START] == b[START]) return b[END] - a[END];
+  //   return a[START] - b[START];
+  // });
+
+  intervals.sort((a, b) => (a[START] === b[START] ? b[END] - a[END] : a[START] - b[START]));
 
   let numberOfCoveredIntervals = 0;
   let currentEnd = -Infinity;
