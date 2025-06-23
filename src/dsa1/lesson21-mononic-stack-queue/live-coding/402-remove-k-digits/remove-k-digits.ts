@@ -1,4 +1,4 @@
-export function removeKdigits(num: string, k: number): string {
+export function removeKdigits2(num: string, k: number): string {
   if (k >= num.length) return '0';
   const stack: string[] = [];
   const n = num.length;
@@ -80,7 +80,7 @@ Explanation: Remove all the digits from the number and it is left with nothing w
 
 
 */
-export function removeKdigits2(num: string, k: number): string {
+export function removeKdigits(num: string, k: number): string {
   const n = num.length;
   const digitsToPick = n - k;
   const deque: number[] = [];
@@ -88,7 +88,7 @@ export function removeKdigits2(num: string, k: number): string {
 
   let j = 0;
   for (let i = 0; i < digitsToPick; i++) {
-    const maxJ = n - digitsToPick + i;
+    const maxJ = i + k;
     // num = "1432 219", k = 3
     // Step 0: i = 0
     // maxJ = 7 - 4 + 0 = 3
