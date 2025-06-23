@@ -20,7 +20,7 @@ export function nextGreaterElements(nums: number[]): number[] {
 export function nextGreaterElements2(nums: number[]): number[] {
   const stack: number[] = [];
   const n = nums.length;
-  const res: number[] = Array(n).fill(0);
+  const res: number[] = Array(n).fill(-1);
   for (let i = 2 * n - 1; i >= 0; i--) {
     const index = i % n;
     while (stack.length && stack[stack.length - 1] <= nums[index]) {
@@ -28,7 +28,9 @@ export function nextGreaterElements2(nums: number[]): number[] {
     }
 
     if (i < n) {
-      res[i] = stack.length ? stack[stack.length - 1] : -1;
+      if (stack.length) {
+        res[i] = stack[stack.length - 1];
+      }
     }
 
     stack.push(nums[index]);
