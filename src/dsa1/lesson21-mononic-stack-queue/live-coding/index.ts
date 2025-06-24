@@ -255,3 +255,59 @@ export function maxResult(nums: number[], k: number): number {
 
   return dp[n - 1];
 }
+
+export function find132pattern(nums: number[]): boolean {
+  const n = nums.length;
+  const stack: number[] = [];
+  let second = -Infinity;
+
+  for (let i = n - 1; i >= 0; i--) {
+    if (nums[i] < second) return true;
+
+    while (stack.length && stack[stack.length - 1] < nums[i]) {
+      second = stack.pop()!;
+    }
+
+    stack.push(nums[i]);
+  }
+
+  return false;
+}
+
+export function sumSubarrayMins(arr: number[]): number {
+  const MOD = 1_000_000_007;
+  const n = arr.length;
+  const stack: number[] = [];
+
+  const left: number[] = Array(n).fill(0); // số phần tử lớn hơn ở bên trái
+  const right: number[] = Array(n).fill(0); // số phần tử lớn hơn hoặc bằng ở bên phải
+
+  // Left: strictly greater
+  for (let i = 0; i < n; i++) {
+    while (stack.length && arr[stack.at(-1)!] > arr[i]) {
+      stack.pop();
+    }
+    const prev = stack.length ? stack.at(-1)! : -1;
+    left[i] = i - prev;
+    stack.push(i);
+  }
+
+  stack.length = 0;
+
+  // Right: greater or equal
+  for (let i = n - 1; i >= 0; i--) {
+    while (stack.length && arr[stack.at(-1)!] >= arr[i]) {
+      stack.pop();
+    }
+    const next = stack.length ? stack.at(-1)! : n;
+    right[i] = next - i;
+    stack.push(i);
+  }
+
+  let res = 0;
+  for (let i = 0; i < n; i++) {
+    res = (res + arr[i] * left[i] * right[i]) % MOD;
+  }
+
+  return res;
+}
