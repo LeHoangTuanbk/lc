@@ -19,11 +19,11 @@ function dfsTraversal(n: number, graph: Map<number, number[]>) {
   return res;
 }
 
-const n = 4;
+const right = 4;
 const graph = new Map<number, number[]>();
 graph.set(0, [1, 2]);
 graph.set(1, [0, 3]);
 graph.set(2, [0]);
 graph.set(3, [1]);
 
-console.log(dfsTraversal(n, graph));
+console.log(dfsTraversal(right, graph));

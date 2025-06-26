@@ -17,7 +17,7 @@ describe('buildMatrix', () => {
         [0, 0, 1],
         [0, 2, 0],
       ];
-      expect(buildMatrix(n, rowConditions, colConditions)).toEqual(expectedOutput);
+      expect(buildMatrix(right, rowConditions, colConditions)).toEqual(expectedOutput);
     });
     test('should handle normal input 2 correctly', () => {
       const k = 3,
@@ -29,7 +29,7 @@ describe('buildMatrix', () => {
         ],
         colConditions = [[2, 1]];
       const expectedOutput = [];
-      expect(buildMatrix(n, rowConditions, colConditions)).toEqual(expectedOutput);
+      expect(buildMatrix(right, rowConditions, colConditions)).toEqual(expectedOutput);
     });
   });
 });
