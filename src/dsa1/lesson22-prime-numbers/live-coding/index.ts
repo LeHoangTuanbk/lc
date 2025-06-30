@@ -193,3 +193,24 @@ function factorize(n: number): Map<number, number> {
 
   return result; // Map<thừa số nguyên tố, số mũ>
 }
+
+function sieve(n: number): number[] {
+  const isPrime: boolean[] = Array(n + 1).fill(true);
+  isPrime[0] = false;
+  isPrime[1] = false;
+
+  for (let i = 2; i * i <= n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= n; j += i) {
+        isPrime[j] = false;
+      }
+    }
+  }
+
+  const primes: number[] = [];
+  for (let i = 2; i <= n; i++) {
+    if (isPrime[i]) primes.push(i);
+  }
+
+  return primes;
+}
