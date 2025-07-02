@@ -1,56 +1,41 @@
+//References: https://leetcode.com/problems/transform-to-chessboard/solutions/114847/c-java-python-solution-with-explanation/
+//Will review later
 export function movesToChessboard(board: number[][]): number {
   const n = board.length;
+  let rowSum = 0,
+    colSum = 0,
+    rowSwap = 0,
+    colSwap = 0;
 
-  const toBitString = (row: number[]) => row.join('');
-  //Step 1:
-  const rowSet = new Set(board.map(toBitString));
-  if (rowSet.size !== 2) return -1;
-
-  const [rowA, rowB] = Array.from(rowSet).map((str) => [...str].map(Number));
-  if (!isComplement(rowA, rowB)) return -1;
-
-  const colSet = new Set(Array.from({ length: n }, (_, j) => board.map((row) => row[j]).join('')));
-  if (colSet.size !== 2) return -1;
-  const [colA, colB] = Array.from(colSet).map((str) => [...str].map(Number));
-  if (!isComplement(colA, colB)) return -1;
-
-  //Step 2:
-  const rowCount = board.reduce((sum, row) => sum + Number(equals(row, rowA)), 0);
-  const colCount = board[0]
-    .map((_, j) => board.map((r) => r[j]))
-    .reduce((sum, col) => sum + Number(equals(col, colA)), 0);
-
-  if (!isValidBalance(rowCount, n) || !isValidBalance(colCount, n)) return -1;
-
-  const rowSwaps = countSwaps(rowA, n);
-  const colSwaps = countSwaps(colA, n);
-
-  return rowSwaps + colSwaps;
-}
-
-function isComplement(rowA: number[], rowB: number[]): boolean {
-  return rowA.every((val, i) => (val ^ rowB[1]) === 1);
-}
-
-function equals(a: number[], b: number[]): boolean {
-  return a.every((v, i) => v === b[i]);
-}
-
-function isValidBalance(count: number, n: number): boolean {
-  return count === Math.floor(n / 2) || count === Math.ceil(n / 2);
-}
-
-function countSwaps(line: number[], n: number): number {
-  const mismatch = (start: 0 | 1) =>
-    line.reduce((cnt, bit, i) => cnt + (bit !== (i + start) % 2 ? 1 : 0), 0);
-
-  const ones = line.reduce((sum, bit) => sum + bit, 0);
-  if (n % 2 === 0) {
-    return Math.min(mismatch(0), mismatch(1) / 2);
-  } else {
-    const expectedStart = ones * 2 > n ? 1 : 0;
-    return mismatch(expectedStart as 0 | 1) / 2;
+  // Step 1: Validate all 2x2 blocks have even parity (b[0][0] ^ b[i][0] ^ b[0][j] ^ b[i][j] == 0)
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if ((board[0][0] ^ board[i][0] ^ board[0][j] ^ board[i][j]) !== 0) return -1;
+    }
   }
+
+  // Step 2: Compute row/col sum & pattern match count
+  for (let i = 0; i < n; i++) {
+    rowSum += board[0][i];
+    colSum += board[i][0];
+    rowSwap += board[i][0] === i % 2 ? 1 : 0;
+    colSwap += board[0][i] === i % 2 ? 1 : 0;
+  }
+
+  // Step 3: Check row/col sum is valid (either n//2 or (n+1)//2)
+  const valid = (x: number) => x === Math.floor(n / 2) || x === Math.ceil(n / 2);
+  if (!valid(rowSum) || !valid(colSum)) return -1;
+
+  // Step 4: Adjust swap count based on parity
+  if (n % 2 === 1) {
+    if (rowSwap % 2 === 1) rowSwap = n - rowSwap;
+    if (colSwap % 2 === 1) colSwap = n - colSwap;
+  } else {
+    rowSwap = Math.min(rowSwap, n - rowSwap);
+    colSwap = Math.min(colSwap, n - colSwap);
+  }
+
+  return (rowSwap + colSwap) / 2;
 }
 
 const board = [
