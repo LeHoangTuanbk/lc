@@ -7,7 +7,7 @@ function insertIntoBST2(root: TreeNode | null, val: number): TreeNode | null {
   return root;
 }
 
-// Iterative method, Space: O(1)
+// Iterative method, Time: O(n), Space: O(1)
 function insertIntoBST(root: TreeNode | null, val: number): TreeNode | null {
   if (root === null) return new TreeNode(val);
   let cur = root;
