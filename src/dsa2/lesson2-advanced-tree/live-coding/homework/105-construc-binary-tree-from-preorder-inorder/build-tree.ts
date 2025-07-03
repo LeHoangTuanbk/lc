@@ -44,7 +44,6 @@ function buildTree4(preorder: number[], inorder: number[]): TreeNode | null {
   for (let i = 0; i < inorder.length; i++) {
     indexMap.set(inorder[i], i);
   }
-
   function buildTreeHelper(
     preorder: number[],
     inorder: number[],
@@ -69,4 +68,27 @@ function buildTree4(preorder: number[], inorder: number[]): TreeNode | null {
   }
 
   return buildTreeHelper(preorder, inorder, 0);
+}
+
+function buildTree5(preorder: number[], inorder: number[]): TreeNode | null {
+  const indexMap = new Map<number, number>();
+  for (let i = 0; i < inorder.length; i++) {
+    indexMap.set(inorder[i], i);
+  }
+
+  function helper(preL: number, preR: number, inL: number, inR: number): TreeNode | null {
+    if (preL > preR || inL > inR) return null;
+
+    const rootVal = preorder[preL];
+    const root = new TreeNode(rootVal);
+    const mid = indexMap.get(rootVal)!;
+    const leftCount = mid - inL;
+
+    root.left = helper(preL + 1, preL + leftCount, inL, mid - 1);
+    root.right = helper(preL + leftCount + 1, preR, mid + 1, inR);
+
+    return root;
+  }
+
+  return helper(0, preorder.length - 1, 0, inorder.length - 1);
 }
