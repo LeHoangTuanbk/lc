@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../tree-node';
+import { TreeNode } from '../../tree-node';
 
 function sumNumbers(root: TreeNode | null): number {
   let sum = 0;

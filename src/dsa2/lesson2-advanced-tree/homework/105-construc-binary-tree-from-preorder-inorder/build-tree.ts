@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../tree-node';
+import { TreeNode } from '../../tree-node';
 
 // Time: O(n2)
 function buildTree(preorder: number[], inorder: number[]): TreeNode | null {

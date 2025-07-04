@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../tree-node';
+import { TreeNode } from '../../tree-node';
 class BSTIterator {
   private idx: number = -1;
   private bstValues: number[] = [];

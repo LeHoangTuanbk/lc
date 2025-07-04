@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../tree-node';
+import { TreeNode } from '../../tree-node';
 // Recursive method,Time: O(n), Space: O(h)
 function insertIntoBST2(root: TreeNode | null, val: number): TreeNode | null {
   if (root === null) return new TreeNode(val);

@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../tree-node';
+import { TreeNode } from '../../tree-node';
 
 function deleteNode(root: TreeNode | null, key: number): TreeNode | null {
   // search for a node

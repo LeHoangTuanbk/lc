@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../tree-node';
+import { TreeNode } from '../../tree-node';
 
 function rightSideView(root: TreeNode | null): number[] {
   //BFS -> take the rightest at each level
