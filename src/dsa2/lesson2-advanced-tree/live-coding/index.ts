@@ -168,21 +168,3 @@ function lowestCommonAncestor2(
 
   // O giua thi la return duoc hoac gap mot trong 2 value thi ta return duoc z a.
 }
-
-function sumNumbers(root: TreeNode | null): number {
-  let res = 0;
-
-  function dfs(node: TreeNode | null, preSum: number) {
-    if (!node) return 0;
-    const curSum = preSum * 10 + node.val;
-    if (!node.right && !node.left) {
-      res += curSum;
-    }
-    dfs(node.left, curSum);
-    dfs(node.right, curSum);
-  }
-
-  dfs(root, 0);
-
-  return res;
-}
