@@ -42,6 +42,5 @@ function lowestCommonAncestor2(
       return node;
     }
   }
-
   return null;
 }
