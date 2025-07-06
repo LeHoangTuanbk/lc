@@ -2,20 +2,16 @@ function findMiddleIndex(nums: number[]): number {
   const n = nums.length;
   if (n == 1) return 0;
   let sum = 0;
+  const prefixSum: number[] = Array(n + 2).fill(0);
   for (let i = 0; i < n; i++) {
     sum += nums[i];
+    prefixSum[i + 1] = prefixSum[i] + nums[i];
   }
-
-  if (sum === nums[0]) return 0;
-
-  const prefixSum: number[] = Array(n + 2).fill(0);
-  for (let i = 1; i <= n; i++) {
-    prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
+  for (let i = 0; i <= n; i++) {
     if (prefixSum[i] === sum - prefixSum[i] - nums[i]) {
       return i;
     }
   }
-
   return -1;
 }
 
@@ -27,7 +23,6 @@ function findMiddleIndex2(nums: number[]): number {
     leftSum += nums[i];
     rightSum -= nums[i];
   }
-
   return -1;
 }
 
