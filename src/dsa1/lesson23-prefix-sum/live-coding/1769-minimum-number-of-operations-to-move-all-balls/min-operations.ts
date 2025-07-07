@@ -20,3 +20,7 @@ function minOperations(boxes: string): number[] {
 
   return answer;
 }
+
+/* 
+Bài này có thể kiểu giải bằng các một chút Math, phá bỏ dấu abs(i - j), rồi tính sum, count tổng. Sau đó dùng công thức sumBefore, countBefore thì ra cũng giảm được xuống O(n). Mất thời gian phân tích một chút thôi. Đúng tinh thần của prefix sum hơn. 
+*/
