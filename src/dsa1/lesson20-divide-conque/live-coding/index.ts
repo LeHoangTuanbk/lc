@@ -1,11 +1,4 @@
-/* 
-Anh chỉ cách sao mà nhớ được master theorem được không ạ? 
-Em học nhưng hay bị quên ạ. 
-
-
-*/
-
-export function findKthLargest(nums: number[], k: number): number {
+export function findKthLargest2(nums: number[], k: number): number {
   k = nums.length - k;
 
   function quickSelect(left: number, right: number) {
@@ -24,6 +17,33 @@ export function findKthLargest(nums: number[], k: number): number {
     if (k <= r) return quickSelect(left, r);
     else if (k > r) return quickSelect(l, right);
     else return nums[k];
+  }
+
+  return quickSelect(0, nums.length - 1);
+}
+
+export function findKthLargest(nums: number[], k: number): number {
+  const target = nums.length - k;
+
+  function quickSelect(left: number, right: number): number {
+    const pivot = nums[Math.floor((left + right) / 2)];
+    let l = left;
+    let r = right;
+
+    while (l <= r) {
+      while (nums[l] < pivot) l++;
+      while (nums[r] > pivot) r--;
+      if (l <= r) {
+        [nums[l], nums[r]] = [nums[r], nums[l]];
+        l++;
+        r--;
+      }
+    }
+
+    // Now l is the first index in the right half
+    if (target <= r) return quickSelect(left, r);
+    else if (target >= l) return quickSelect(l, right);
+    else return nums[target];
   }
 
   return quickSelect(0, nums.length - 1);
@@ -144,67 +164,5 @@ Explanation: The reverse pairs are:
 (1, 4) --> nums[1] = 4, nums[4] = 1, 4 > 2 * 1
 (2, 4) --> nums[2] = 3, nums[4] = 1, 3 > 2 * 1
 (3, 4) --> nums[3] = 5, nums[4] = 1, 5 > 2 * 1
-
-*/
-
-export function countRangeSum(nums: number[], lower: number, upper: number): number {
-  let ps: number[] = [0];
-  for (const e of nums) {
-    ps.push(ps[ps.length - 1] + e);
-  }
-
-  const n = ps.length;
-  return countRangeSum(ps, 0, n - 1, lower, upper);
-
-  function countRangeSum(ps: number[], l: number, r: number, lower: number, upper: number) {
-    if (l == r) {
-      return 0;
-    }
-    let m = Math.ceil((l + r) / 2);
-    let countLeft = countRangeSum(ps, l, m, lower, upper);
-    let countRight = countRangeSum(ps, m + 1, r, lower, upper);
-    let countCross = mergeAndCount(ps, l, m, r, lower, upper);
-  }
-
-  function mergeAndCount(
-    ps: number[],
-    m: number,
-    l: number,
-    r: number,
-    lower: number,
-    upper: number,
-  ) {
-    //Count
-    let cnt = 0;
-    let jMin = m + 1,
-      jMax = jMin;
-
-    for (let i = l; i < m + 1; i++) {
-      while (jMin <= r && nums[jMin] - nums[i] < lower) {
-        jMin += 1;
-      }
-      while (jMax <= r && nums[jMax] - nums[i] <= upper) {
-        jMax += 1;
-      }
-      cnt += jMax - jMin;
-    }
-
-    // Merge
-    let a = [];
-    let i = l;
-    let j = m + 1;
-    while (i <= m && j <= r) {}
-  }
-}
-/* 
-Example 1:
-
-Input: nums = [-2,5,-1], lower = -2, upper = 2
-Output: 3
-Explanation: The three ranges are: [0,0], [2,2], and [0,2] and their respective sums are: -2, -1, 2.
-Example 2:
-
-Input: nums = [0], lower = 0, upper = 0
-Output: 1
 
 */
