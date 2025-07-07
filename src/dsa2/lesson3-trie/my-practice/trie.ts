@@ -44,74 +44,31 @@ export class Trie {
     return true;
   }
   delete(word: string): boolean {
-    const deleteHelper = (node: TrieNode, depth: number): [boolean, boolean] => {
+    const remove = (node: TrieNode | null, depth: number): TrieNode | null => {
+      if (!node) return null;
+
       if (depth === word.length) {
-        if (!node.isEndOfWord) return [false, false];
+        if (!node.isEndOfWord) return node; // word not found
         node.isEndOfWord = false;
-        const canDeleteNode = node.children.every((child) => child === null);
-        return [true, canDeleteNode];
+
+        if (node.children.every((c) => c === null)) {
+          return null; // delete this node
+        }
+        return node;
       }
 
-      const index = word.charCodeAt(depth) - 'a'.charCodeAt(0);
-      const child = node.children[index];
-      if (!child) return [false, false];
+      const idx = word.charCodeAt(depth) - 97;
+      node.children[idx] = remove(node.children[idx], depth + 1);
 
-      const [deletedWord, shouldDeleteChild] = deleteHelper(child, depth + 1);
-
-      if (shouldDeleteChild) {
-        node.children[index] = null;
-        const canDeleteNode = !node.isEndOfWord && node.children.every((c) => c === null);
-        return [deletedWord, canDeleteNode];
+      if (node.children.every((c) => c === null) && !node.isEndOfWord) {
+        return null; // delete current node
       }
 
-      return [deletedWord, false];
+      return node;
     };
 
-    const [deletedWord] = deleteHelper(this.root, 0);
-    return deletedWord;
-  }
-}
-
-class TrieNode {
-  children: Array<TrieNode | null>;
-  sum: number;
-  constructor() {
-    this.children = new Array(26).fill(null);
-    this.sum = 0;
-  }
-}
-
-export class MapSum {
-  private map: Map<string, number>;
-  private root: TrieNode;
-
-  constructor() {
-    this.map = new Map<string, number>();
-    this.root = new TrieNode();
-  }
-
-  insert(key: string, val: number): void {
-    const delta = val - (this.map.get(key) ?? 0); // difference if key already exists
-    this.map.set(key, val);
-
-    let node = this.root;
-    for (const ch of key) {
-      const index = ch.charCodeAt(0) - 97;
-      if (node.children[index] === null) {
-        node.children[index] = new TrieNode();
-      }
-      node = node.children[index];
-      node.sum += delta;
-    }
-  }
-
-  sum(prefix: string): number {
-    let node = this.root;
-    for (const ch of prefix) {
-      const index = ch.charCodeAt(0) - 97;
-      if (node.children[index] === null) return 0;
-      node = node.children[index];
-    }
-    return node.sum;
+    const before = this.search(word);
+    this.root = remove(this.root, 0) || new TrieNode();
+    return before;
   }
 }
