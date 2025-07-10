@@ -1,56 +1,3 @@
-function maxNumEdgesToRemove(n: number, edges: number[][]): number {}
-
-function distanceLimitedPathsExist(
-  n: number,
-  edgeList: number[][],
-  queries: number[][],
-): boolean[] {
-  edgeList.sort((a, b) => a[2] - b[2]);
-  const ql = queries.length;
-  const qs: number[][] = Array.from({ length: ql }, () => Array(4));
-  for (let i = 0; i < ql; i++) {
-    qs[i][0] = queries[i][0];
-    qs[i][1] = queries[i][1];
-    qs[i][2] = queries[i][3];
-    qs[i][3] = i;
-  }
-
-  qs.sort((a, b) => a[2] - b[2]);
-  const par: number[] = Array(n);
-  for (let i = 0; i < n; i++) {
-    par[i] = i;
-  }
-
-  let idx = 0;
-  const m = edgeList.length;
-
-  const res: boolean[] = Array(ql);
-
-  for (let i = 0; i < ql; i++) {
-    const q: number[] = qs[i];
-    for (; idx < m && edgeList[idx][2] < q[2]; idx++) {
-      const p1 = find(edgeList[idx][0], par);
-      const p2 = find(edgeList[idx][1], par);
-      if (p1 <= p2) {
-        par[p2] = p1;
-      } else {
-        par[p1] = p2;
-      }
-    }
-    const p1 = find(q[0], par);
-    const p2 = find(q[1], par);
-    res[q[3]] = p1 === p2;
-    return res;
-  }
-
-  function find(cur: number, par: number[]) {
-    if (cur != par[cur]) {
-      par[cur] = find(par[cur], par);
-    }
-    return par[cur];
-  }
-}
-
 export function numIslands2(n: number, m: number, positions: Array<[number, number]>): number[] {
   const size = m * n;
   const par: number[] = Array(size).fill(-1);
@@ -77,6 +24,7 @@ export function numIslands2(n: number, m: number, positions: Array<[number, numb
         num--;
       }
     }
+    res.push;
   }
 }
 
