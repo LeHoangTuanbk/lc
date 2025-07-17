@@ -123,29 +123,3 @@ Output: 61
 Explanation: There are 63 non-empty subsequences, two of them do not satisfy the condition ([6,7], [7]).
 Number of valid subsequences (63 - 2 = 61).
 */
-
-import { ListNode } from "../../../dsa1/lesson7+8-linked-list/live-coding/linkedList";
-function detectCycle(head: ListNode | null): ListNode | null {
-  if(head == null) return null;
-
-  let fast = head, slow = head;
-
-  while(true) {
-    if(fast.next == null || fast.next.next == null) {
-      return null;
-    }
-
-    slow = slow.next;
-    fast = fast.next.next;
-    if(slow === fast) {
-      break;
-    }
-  }
-
-  fast = head;
-  while(fast != slow) {
-    slow = slow.next;
-    fast = fast.next
-  }
-  return fast;
-};
