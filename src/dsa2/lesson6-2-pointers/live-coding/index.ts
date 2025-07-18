@@ -16,7 +16,7 @@ function removeDuplicates(nums: number[]): number {
   return cnt;
 }
 
-// Ngồi một hồi chứng minh mới hiểu cái bài dò điểm cycle, tại sao khi reset slow về head rồi chạy đến khi gặp nhau thì đó chính là điểm giao.
+
 /* 
 Example 1:
 
@@ -45,19 +45,7 @@ class Solution:
             
         return left
 
-*/
 
-function maxArea(height: number[]): number {
-  let i = 0,
-    j = height.length - 1,
-    best = 0;
-  while (i < j) {
-    best = Math.max(best, (j - i) * Math.min(height[i], height[j]));
-    if (height[i] < height[j]) i++;
-    else j--;
-  }
-  return best;
-}
 
 /* 
 Input: height = [1,8,6,2,5,4,8,3,7]
