@@ -24,3 +24,19 @@ const arr = [2, 2, 2, 2, 5, 5, 5, 8],
   threshold = 4;
 
 console.log(numOfSubarrays(arr, k, threshold));
+
+export function numOfSubarrays2(arr: number[], k: number, threshold: number): number {
+  const n = arr.length;
+  let res = 0,
+    sum = 0;
+  for (let end = 0; end < n; end++) {
+    sum += arr[end];
+    if (end >= k - 1) {
+      if (sum >= k * threshold) {
+        res++;
+      }
+      sum -= arr[end - k + 1];
+    }
+  }
+  return res;
+}
