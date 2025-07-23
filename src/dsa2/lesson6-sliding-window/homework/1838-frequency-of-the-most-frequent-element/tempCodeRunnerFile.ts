@@ -1,0 +1,1 @@
+right - left + 1) * nums[right] - sum 
