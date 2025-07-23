@@ -86,3 +86,19 @@ export function lengthOfLongestSubstring3(s: string): number {
   }
   return maxLen;
 }
+
+function lengthOfLongestSubstring5(s: string): number {
+  const n = s.length;
+  const seen = new Set<string>();
+  let res = 0;
+
+  for (let i = 0, j = -1; i < n; i++) {
+    while (j + 1 < n && !seen.has(s[j + 1])) {
+      j++;
+      seen.add(s[j]);
+    }
+    res = Math.max(res, j - i + 1);
+    seen.delete(s[i]);
+  }
+  return res;
+}
