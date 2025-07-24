@@ -4,6 +4,7 @@ export function removeDuplicates(nums: number[]): number {
 
   let cnt = 1,
     j = 1;
+
   for (let i = 1; i < n; i++) {
     if (nums[i] === nums[i - 1]) cnt++;
     else cnt = 1;
@@ -13,10 +14,24 @@ export function removeDuplicates(nums: number[]): number {
       j++;
     }
   }
+
   return j;
 }
 
-const nums = [1, 1, 1, 2, 2, 3];
+export function removeDuplicates2(nums: number[]): number {
+  const n = nums.length;
+  if (n <= 2) return n;
+  let j = 2;
+  for (let i = 2; i < n; i++) {
+    if (nums[i] != nums[j - 2]) {
+      nums[j] = nums[i];
+      j++;
+    }
+  }
+  return j;
+}
+
+const nums = [1, 1, 1, 2, 2, 2, 3];
 console.log(removeDuplicates(nums));
 console.log(nums);
 /* 
@@ -34,3 +49,15 @@ Explanation: Your function should return k = 7, with the first seven elements of
 It does not matter what you leave beyond the returned k (hence they are underscores).
 
 */
+export function removeDuplicatesAtMostK(nums: number[], k: number): number {
+  const n = nums.length;
+  if (n <= k) return n;
+  let j = k;
+  for (let i = k; i < n; i++) {
+    if (nums[i] !== nums[j - k]) {
+      nums[j] = nums[i];
+      j++;
+    }
+  }
+  return j;
+}
