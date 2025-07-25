@@ -8,7 +8,6 @@ function permute(nums: number[]): number[][] {
       result.push([...path]);
       return;
     }
-
     for (let i = 0; i < n; i++) {
       if (used[i]) continue;
       path.push(nums[i]);
