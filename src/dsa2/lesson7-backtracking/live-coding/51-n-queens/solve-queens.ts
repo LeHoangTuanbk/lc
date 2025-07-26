@@ -2,6 +2,7 @@ export function solveNQueens(n: number): string[][] {
   const res: string[][] = [];
   const board: string[][] = Array.from({ length: n }, () => Array(n).fill('.'));
 
+  // TODO: Will refactor to outside
   function dfs(col: number): void {
     if (col >= n) {
       const snapshot = board.map((row) => row.join(''));
@@ -11,25 +12,25 @@ export function solveNQueens(n: number): string[][] {
 
     for (let row = 0; row < n; row++) {
       if (!canPlace(row, col)) continue;
-
       board[row][col] = 'Q';
       dfs(col + 1);
-      board[row][col] = '.'; // backtrack
+      board[row][col] = '.';
     }
   }
 
+  // TODO: Will refactor to outside
   function canPlace(x: number, y: number): boolean {
-    // Check same row (left side only is enough)
+    // check same row
     for (let i = 0; i < y; i++) {
       if (board[x][i] === 'Q') return false;
     }
 
-    // Left-top diagonal
+    // check left top diagonal
     for (let i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
       if (board[i][j] === 'Q') return false;
     }
 
-    // Left-bottom diagonal
+    // check left bottom diagonal
     for (let i = x + 1, j = y - 1; i < n && j >= 0; i++, j--) {
       if (board[i][j] === 'Q') return false;
     }
@@ -40,3 +41,14 @@ export function solveNQueens(n: number): string[][] {
   dfs(0);
   return res;
 }
+
+const n = 4;
+const expectedOutput = [
+  ['.Q..', '...Q', 'Q...', '..Q.'],
+  ['..Q.', 'Q...', '...Q', '.Q..'],
+];
+/* 
+Input: n = 4
+Output: [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
+*/
