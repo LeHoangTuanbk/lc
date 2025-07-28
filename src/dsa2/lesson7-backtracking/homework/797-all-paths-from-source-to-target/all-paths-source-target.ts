@@ -2,9 +2,7 @@ export function allPathsSourceTarget(graph: number[][]): number[][] {
   const res: number[][] = [];
   const n = graph.length;
   const visited = Array(n).fill(false);
-
   backtrack(0, [0], visited, res, graph, n);
-
   return res;
 }
 
