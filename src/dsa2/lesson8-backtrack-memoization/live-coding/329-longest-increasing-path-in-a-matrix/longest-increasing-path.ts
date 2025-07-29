@@ -48,5 +48,4 @@ function inside(x: number, y: number, m: number, n: number) {
 - Mỗi cell, dfs để tìm longest path 
 - Update max cho đến khi duyệt hết. 
 Cần memoize lại cái giá trị max từ một cell để lần sau duyệt sẵn dùng. 
-
 */
