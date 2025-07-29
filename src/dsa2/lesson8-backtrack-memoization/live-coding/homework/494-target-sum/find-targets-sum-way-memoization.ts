@@ -5,7 +5,6 @@ export function findTargetSumWays(nums: number[], target: number): number {
   function dfs(i: number, sum: number): number {
     const key = `${i}, ${sum}`;
     if (memo.has(key)) return memo.get(key);
-
     if (i === nums.length) {
       return sum === target ? 1 : 0;
     }
@@ -14,6 +13,7 @@ export function findTargetSumWays(nums: number[], target: number): number {
     const subtract = dfs(i + 1, sum - nums[i]);
     const total = add + subtract;
     memo.set(key, total);
+
     return total;
   }
 
