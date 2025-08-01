@@ -1,4 +1,4 @@
-import { knapsackBackTrack } from '.';
+import { knapsackBackTrack } from './solution';
 
 describe('0/1 Knapsack', () => {
   it('Test case 1', () => {
