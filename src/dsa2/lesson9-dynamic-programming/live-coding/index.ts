@@ -1,35 +1,3 @@
-/* 
-backtracking + memoization
-Mình thấy liên quan đến tree
-
-Nhờ có cái table trên mà thông não cái idea ạ
-Chắc bài trước là dp tabulation 1 chiều, bài này là 2 chiều. Phân loại bài cho dể nhận dạng vậy được không anh? 
-
-Tạm thời mình cứ chấp nhận bài này nó giải kiểu này. 
-
-Mà hình như không nhìn thấy 
-
-Bài này trước học đại học là bài tên trộm vào tiệm vàng. 🤣
-
-*/
-export function lengthOfLIS(nums: number[]): number {
-  const n = nums.length;
-  if (n <= 1) return n;
-  const dp = Array(n + 1).fill(1);
-  let best = 1;
-  for (let i = 1; i <= n; i++) {
-    const ai = nums[i];
-    dp[i] = 1;
-    for (let j = i - 1; j >= 0; j--) {
-      if (nums[i] > nums[j]) {
-        dp[i] = Math.max(dp[i], 1 + dp[j]);
-      }
-    }
-    best = Math.max(best, dp[i]);
-  }
-  return best;
-}
-
 export function longestCommonSubsequence(s1: string, s2: string): number {
   const n = s1.length,
     m = s2.length;
