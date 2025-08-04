@@ -1,4 +1,34 @@
-export function maxSubArray(nums: number[]): number {}
+export function maxSubArray(nums: number[]): number {
+  const n = nums.length;
+  const dp: number[] = Array(n).fill(-Infinity);
+  dp[0] = nums[0];
+  let best = dp[0];
+
+  for (let i = 1; i < n; i++) {
+    dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
+    best = Math.max(best, dp[i]);
+  }
+
+  return best;
+}
+
+export function maxSubArray2(nums: number[]): number {
+  const n = nums.length;
+
+  let preMaxSub = nums[0];
+  let best = nums[0];
+
+  for (let i = 1; i < n; i++) {
+    const currentMaxSub = Math.max(preMaxSub + nums[i], nums[i]);
+    best = Math.max(best, currentMaxSub);
+    preMaxSub = currentMaxSub;
+  }
+
+  return best;
+}
+
+const nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+console.log(maxSubArray2(nums));
 /* 
 Example 1:
 
