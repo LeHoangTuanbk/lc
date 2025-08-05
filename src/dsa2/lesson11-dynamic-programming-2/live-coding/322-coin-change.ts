@@ -1,7 +1,3 @@
-/* 
-Sao không đặt hàm state là f[amount][n] mà lại là f[n][amount] ạ? 
-*/
-
 export function coinChange(coins: number[], amount: number): number {
   const n = coins.length;
 

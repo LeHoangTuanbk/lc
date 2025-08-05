@@ -12,7 +12,7 @@ function maxProfit(prices: number[]): number {
   return f[n];
 }
 
-function maxProfit(prices: number[]): number {
+function maxProfit2(prices: number[]): number {
   const n = prices.length;
 
   const f = Array(n + 1).fill(0);
