@@ -18,8 +18,34 @@ export function canThreePartsEqualSum(arr: number[]): boolean {
   return false;
 }
 
-const arr = [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1];
-console.log(canThreePartsEqualSum(arr));
+export function canThreePartsEqualSum2(arr: number[]): boolean {
+  const n = arr.length;
+  const total = arr.reduce((a, b) => a + b);
+  if (total % 3 !== 0) return false;
+  const target = total / 3;
+
+  let l = 0,
+    r = n - 1;
+  let leftSum = arr[l++],
+    rightSum = arr[r--];
+
+  do {
+    if (leftSum != target) {
+      leftSum += arr[l++];
+    }
+    if (rightSum != target) {
+      rightSum += arr[r--];
+    }
+
+    if (leftSum === target && rightSum == target && l <= r) {
+      return true;
+    }
+  } while (l < r);
+  return false;
+}
+
+const arr = [3, 3, 6, 5, -2, 2, 5, 1, -9, 4];
+console.log(canThreePartsEqualSum2(arr));
 // Pay attention the test case with 0 at the end
 /* 
 Example 1:
