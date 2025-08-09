@@ -75,8 +75,3 @@ function binarySearch(arr: number[], target: number): number {
   // giống Arrays.binarySearch trong Java (trả về -insertion_point - 1)
   return -lo - 1;
 }
-/* 
-Bài này em đọc slide mới hiểu đến dùng bitmask để generate ra tất cả 2 ^ n khả năng rồi tìm minDiff. Chưa hiểu mấy cái sau ạ
-
-Theo em hiểu thì cách trên có time là 2 ^n * n ^ logn * log n anh nhở? 
-*/
