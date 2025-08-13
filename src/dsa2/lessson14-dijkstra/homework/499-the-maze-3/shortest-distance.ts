@@ -73,3 +73,15 @@ function lexWeight(s: string): number {
   }
   return weight;
 }
+
+const maze = [
+  [0, 0, 0, 0, 0],
+  [1, 1, 0, 0, 1],
+  [0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 1],
+  [0, 1, 0, 0, 0],
+];
+const ball: [number, number] = [4, 3];
+const hole: [number, number] = [0, 1];
+
+console.log(findShortestWay(maze, ball, hole));
