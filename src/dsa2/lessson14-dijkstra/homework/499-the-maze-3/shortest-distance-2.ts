@@ -3,6 +3,9 @@ import { MinPriorityQueue } from '@datastructures-js/priority-queue';
 export type Point = [number, number];
 type State = { d: number; r: number; c: number; path: string };
 
+/* 
+https://leetcode.ca/all/499.html
+*/
 export function findShortestWay(maze: number[][], ball: Point, hole: Point): string {
   const m = maze.length,
     n = maze[0].length;
@@ -15,7 +18,6 @@ export function findShortestWay(maze: number[][], ball: Point, hole: Point): str
 
   const dist = Array.from({ length: m }, () => Array(n).fill(Infinity));
   const path = Array.from({ length: m }, () => Array(n).fill(''));
-
   const pq = new MinPriorityQueue<State>({
     compare: (a, b) => {
       if (a.d !== b.d) return a.d - b.d;
@@ -30,13 +32,12 @@ export function findShortestWay(maze: number[][], ball: Point, hole: Point): str
   while (!pq.isEmpty()) {
     const { d, r, c, path: p } = pq.dequeue();
 
-    if (d > dist[r][c] || (d === dist[r][c] && p > path[r][c])) continue;
+    if (d > dist[r][c] || p > path[r][c]) continue;
 
     for (const [dr, dc, move] of dirs) {
       let nr = r,
         nc = c,
         steps = 0;
-
       while (
         nr + dr >= 0 &&
         nr + dr < m &&
