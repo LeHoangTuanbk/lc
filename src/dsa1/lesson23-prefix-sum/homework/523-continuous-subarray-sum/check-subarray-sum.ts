@@ -31,9 +31,9 @@ function checkSubarraySum2(nums: number[], k: number): boolean {
   return false;
 }
 
-const nums = [5, 0, 0, 0],
+const stoneValue = [5, 0, 0, 0],
   k = 3;
-console.log(checkSubarraySum(nums, k));
+console.log(checkSubarraySum(stoneValue, k));
 /* 
 Example 1:
 

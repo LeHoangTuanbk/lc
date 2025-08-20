@@ -1,1 +1,1 @@
-right - left + 1) * nums[right] - sum 
+right - left + 1) * stoneValue[right] - sum 

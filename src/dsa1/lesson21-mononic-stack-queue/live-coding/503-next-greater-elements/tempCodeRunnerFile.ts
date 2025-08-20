@@ -1,1 +1,1 @@
-le.log(nextGreaterElements(nums
+le.log(nextGreaterElements(stoneValue

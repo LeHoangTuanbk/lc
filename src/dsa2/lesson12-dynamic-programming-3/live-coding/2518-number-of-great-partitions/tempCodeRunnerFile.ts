@@ -1,1 +1,1 @@
- dp[i - 1][j - nums[i - 1]] + nums[i - 1]
+dp[i - 1][j - stoneValue[i - 1]] + stoneValue[i - 1];
