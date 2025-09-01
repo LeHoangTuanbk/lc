@@ -26,8 +26,6 @@ export function wordsTyping(rows: number, cols: number, sentence: string[]) {
   return count;
 }
 
-console.log(wordsTyping(4, 5, ['I', 'had', 'apple', 'pie']));
-
 export function wordsTyping2(rows: number, cols: number, sentence: string[]) {
   const fullSentence = sentence.join(' ') + ' ';
   const totalLength = fullSentence.length;
