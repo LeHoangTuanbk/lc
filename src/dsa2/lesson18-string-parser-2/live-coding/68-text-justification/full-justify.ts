@@ -1,52 +1,46 @@
 export function fullJustify(words: string[], maxWidth: number): string[] {
-  // Split
-  let curLine = words[0];
-  let output: string[] = [];
-  for (let i = 1; i <= words.length; i++) {
-    const word = words[i];
-    if (curLine.length + 1 + word.length <= maxWidth) {
-      curLine += ' ' + word;
-    } else {
-      const paddingSpaces = maxWidth - curLine.length;
-      curLine += ' '.repeat(paddingSpaces);
-      output.push(textJustify(curLine));
-      curLine = word;
+  const output: string[] = [];
+  let lineWords: string[] = [];
+  let lineLen = 0;
+
+  for (const word of words) {
+    if (lineLen + word.length + lineWords.length > maxWidth) {
+      output.push(textJustify(lineWords, maxWidth));
+      lineWords = [];
+      lineLen = 0;
     }
+    lineWords.push(word);
+    lineLen += word.length;
   }
-  output.push(paddingSpaces(curLine, maxWidth));
+
+  output.push(leftJustify(lineWords, maxWidth));
   return output;
-  // Justify
 }
 
-function textJustify(text: string) {
-  const words = text.split(/\s+/);
-  const numWords = words.length;
-  const totalSpaces = text.split('').filter((c) => c == ' ').length;
+function textJustify(words: string[], maxWidth: number): string {
+  const totalLen = words.reduce((sum, w) => sum + w.length, 0);
+  const totalSpaces = maxWidth - totalLen;
 
-  if (numWords === 1) {
+  if (words.length === 1) {
     return words[0] + ' '.repeat(totalSpaces);
   }
 
-  const spaceBetween = Math.floor(totalSpaces / (numWords - 1));
-  let spaceRemain = totalSpaces % (numWords - 1);
+  const spaceBetween = Math.floor(totalSpaces / (words.length - 1));
+  let spaceRemain = totalSpaces % (words.length - 1);
+  let res = words[0];
 
-  let ans = words[0];
   for (let i = 1; i < words.length; i++) {
-    if (spaceRemain > 0) {
-      ans += ' ';
-      spaceRemain--;
-    }
-    ans += ' '.repeat(spaceBetween) + words[i];
+    const extra = spaceRemain > 0 ? 1 : 0;
+    spaceRemain--;
+    res += ' '.repeat(spaceBetween + extra) + words[i];
   }
-
-  return ans;
+  return res;
 }
 
-function paddingSpaces(text: string, maxWidth: number) {
-  const leftSpaces = maxWidth - text.length;
-  return text + ' '.repeat(leftSpaces);
+function leftJustify(words: string[], maxWidth: number): string {
+  const text = words.join(' ');
+  return text + ' '.repeat(maxWidth - text.length);
 }
-
 /* 
 Example 1:
 
