@@ -1,0 +1,3 @@
+ currentLine++;
+      newLineFlag = true;
+      currentSentence = '';

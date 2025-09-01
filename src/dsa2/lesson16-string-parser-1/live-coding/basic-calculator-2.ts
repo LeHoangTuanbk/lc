@@ -12,5 +12,7 @@ export function calculate(s: string): number {
     if (isDigit(ch)) {
       num = num * 10 + (ch.charCodeAt(0) - 48);
     }
+
+    if(!isDigit)
   }
 }
