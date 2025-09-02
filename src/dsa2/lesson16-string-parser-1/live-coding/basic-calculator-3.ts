@@ -39,9 +39,4 @@ export function calculateIII(s: string): number {
   return helper();
 }
 
-/* 
-Thấy slide có vẻ có idea recursion, anh có thể nói qua thêm idea recursion được không? 
-
-*/
-
 console.log(calculateIII('((1+2)+(3+4))*2')); //20
