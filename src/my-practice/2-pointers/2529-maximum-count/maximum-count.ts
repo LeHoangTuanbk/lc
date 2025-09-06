@@ -74,3 +74,18 @@ Output: 4
 Explanation: There are 4 positive integers and 0 negative integers. The maximum count among them is 4.
 
 */
+
+
+
+function postorder(node: TreeNode | null, nums: number[]) {
+    if(!node) return;
+    postorder(node.left, nums);
+    postorder(node.right, nums);
+    nums.push(node.val);  
+}
+
+function postorderTraversal(root: TreeNode | null): number[] {
+    const nums: [] = [];
+    postorder(root, nums);
+    return nums;
+};
