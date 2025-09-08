@@ -15,26 +15,19 @@
 /**
  Do not return anything, modify root in-place instead.
  */
+export function flatten(root: TreeNode | null): void {
+  let prev: TreeNode | null = null;
 
-function preorderTraversal(node: TreeNode | null, nodes: TreeNode[]) {
-  if (!node) return;
-  nodes.push(node);
-  preorderTraversal(node.left, nodes);
-  preorderTraversal(node.right, nodes);
-}
+  function reversePreorder(node: TreeNode | null) {
+    if (!node) return;
 
-function flatten(root: TreeNode | null): void {
-  /**
-        Solution 1: convert tree to array by pre order traversal => create List
-        Solution 2: While pre order traversal, => create list
-     */
-  if (!root) return;
-  const nodes: TreeNode[] = [];
+    reversePreorder(node.right);
+    reversePreorder(node.left);
+    node.right = prev;
+    node.left = null;
 
-  preorderTraversal(root, nodes);
-
-  for (let i = 1; i < nodes.length; i++) {
-    nodes[i - 1].left = null;
-    nodes[i - 1].right = nodes[i];
+    prev = node;
   }
+
+  reversePreorder(root);
 }
