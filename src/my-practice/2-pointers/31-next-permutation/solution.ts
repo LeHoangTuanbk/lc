@@ -6,6 +6,7 @@ export function nextPermutation(nums: number[]): void {
   let i = n - 2;
 
   // 2 1 3 4
+  // 1 4 3 2 => 1
   while (i >= 0 && nums[i] >= nums[i + 1]) {
     i--;
   }
