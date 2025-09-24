@@ -8,16 +8,18 @@ export function findMin(nums: number[]): number {
 
   while (low < high) {
     const mid = low + Math.floor((high - low) / 2);
-    if (nums[mid] <= nums[high]) {
+    if (nums[mid] < nums[high]) {
       high = mid;
-    } else {
+    } else if (nums[mid] > nums[high]) {
       low = mid + 1;
+    } else {
+      high--;
     }
   }
 
   return nums[low];
 }
 
-const nums = [3, 1, 2];
+const nums = [3, 3, 4, 5, 1, 3];
 
 console.log(findMin(nums));
