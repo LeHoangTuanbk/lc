@@ -21,10 +21,27 @@ function notInRangeSearch(arr: number[], from: number, to: number) {
     if (arr[mid] >= from && arr[mid] <= to) {
       return false;
     } else if (arr[mid] < from) low = mid + 1;
-    else if (arr[mid] > to) {
+    else {
       high = mid - 1;
     }
   }
+  return true;
+}
+
+function notInRangeSearch2(arr: number[], from: number, to: number): boolean {
+  let low = 0,
+    high = arr.length;
+
+  // tìm phần tử đầu tiên >= from
+  while (low < high) {
+    const mid = (low + high) >> 1;
+    if (arr[mid] < from) low = mid + 1;
+    else high = mid;
+  }
+
+  // bây giờ low là index đầu tiên >= from
+  // nếu low vẫn trong mảng và arr[low] <= to → có số trong khoảng
+  if (low < arr.length && arr[low] <= to) return false;
   return true;
 }
 
