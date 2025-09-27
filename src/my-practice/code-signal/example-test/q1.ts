@@ -1,4 +1,4 @@
-export function transformArray(nums: number[]) {
+export function transformArray2(nums: number[]) {
   const n = nums.length;
   if (n == 1) return nums;
 
@@ -7,6 +7,22 @@ export function transformArray(nums: number[]) {
   res[n - 1] = nums[n - 2] + nums[n - 1];
   for (let i = 1; i < n - 1; i++) {
     res[i] = nums[i - 1] + nums[i] + nums[i + 1];
+  }
+
+  return res;
+}
+
+export function transformArray(nums: number[]) {
+  const n = nums.length;
+  const res: number[] = [...nums];
+
+  for (let i = 0; i < n; i++) {
+    if (i > 0) {
+      res[i] += nums[i - 1];
+    }
+    if (i < n - 1) {
+      res[i] += nums[i + 1];
+    }
   }
 
   return res;
