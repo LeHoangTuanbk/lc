@@ -1,2 +1,4 @@
-const a = 0.14 * 30 * 2 + 0.35 + 0.2;
+const a: number[] = [];
+a[0] = 1;
+a[4] = 2;
 console.log(a);
