@@ -41,6 +41,12 @@ dp = [1, 1, 1, 2, 2]
 minEndVales = [-inf, 2, 3, 7]
 dp = [1, 1, 1, 2, 2, 3]
 
+...
+
+4. 18: 
+minEndVales = [-inf, 2, 3, 7, 18]
+dp = [1, 1, 1, 2, 2, 3, 4, 4]
+
 */
 
 export function lengthOfLIS(nums: number[]): number {}
