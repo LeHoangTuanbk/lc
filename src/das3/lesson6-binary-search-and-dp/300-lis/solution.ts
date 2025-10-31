@@ -49,4 +49,26 @@ dp = [1, 1, 1, 2, 2, 3, 4, 4]
 
 */
 
-export function lengthOfLIS(nums: number[]): number {}
+export function lengthOfLIS(nums: number[]): number {
+  const smallest: number[] = [];
+
+  for (const num of nums) {
+    let left = 0,
+      right = smallest.length;
+    while (left < right) {
+      const mid = Math.floor((left + right) / 2);
+      if (smallest[mid] < num) left = mid + 1;
+      else right = mid;
+    }
+    if (left < smallest.length) {
+      smallest[left] = num;
+    } else {
+      smallest.push(num);
+    }
+  }
+
+  return smallest.length;
+}
+
+const a = [2, 1, 3, 5, 4];
+console.log(lengthOfLIS(a));
