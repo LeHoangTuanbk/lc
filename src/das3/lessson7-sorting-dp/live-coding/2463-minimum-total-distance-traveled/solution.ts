@@ -17,7 +17,7 @@ export function minimumTotalDistance(robot: number[], factory: number[][]): numb
 
   const m = robot.length,
     n = factory2.length;
-
+  // first i robots, first j factories
   const dp: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(Infinity));
 
   for (let i = 0; i <= n; i++) {
