@@ -18,6 +18,8 @@ export function uniquePathsIII(grid: number[][]): number {
     }
   }
 
+  const visited = Array.from({ length: m }, () => Array(n).fill(false));
+
   let res = 0;
   const dirs = [
     [-1, 0],
@@ -32,18 +34,17 @@ export function uniquePathsIII(grid: number[][]): number {
       return;
     }
 
-    const temp = grid[r][c];
-    grid[r][c] = -2;
+    visited[r][c] = true;
     remain--;
     for (const [dr, dc] of dirs) {
       const nr = r + dr;
       const nc = c + dc;
 
-      if (nr >= 0 && nc >= 0 && nr < m && nc < n && grid[nr][nc] >= 0) {
+      if (nr >= 0 && nc >= 0 && nr < m && nc < n && !visited[nr][nc] && grid[nr][nc] >= 0) {
         backtrack(nr, nc, remain);
       }
     }
-    grid[r][c] = temp;
+    visited[r][c] = false;
   }
 
   backtrack(startR, startC, nonObstacle);
