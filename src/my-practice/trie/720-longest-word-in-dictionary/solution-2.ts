@@ -1,5 +1,6 @@
 export function longestWord(words: string[]): string {
   words.sort((a, b) => a.length - b.length || a.localeCompare(b));
+  console.log(words);
   let built = new Set<string>();
 
   let res = '';
@@ -13,3 +14,5 @@ export function longestWord(words: string[]): string {
   }
   return res;
 }
+const words = ['a', 'banana', 'app', 'b', 'appl', 'ap', 'apply', 'apple'];
+console.log(longestWord(words));
