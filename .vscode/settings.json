@@ -17,5 +17,7 @@
   "vim.cursorStylePerMode.visual": "block",
   "vim.smartRelativeLine": true,
   "editor.cursorSmoothCaretAnimation": "on",
-  "vim.leader": "<space>"
+  "vim.leader": "<space>",
+
+  "latex-workshop.intellisense.biblatexJSON.replace": {}
 }
