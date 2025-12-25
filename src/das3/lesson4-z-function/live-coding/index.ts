@@ -56,3 +56,5 @@ Homeowrk 1:
 https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/submissions/1107736107/
 
 */
+const a = '0123';
+console.log(a[10]);
