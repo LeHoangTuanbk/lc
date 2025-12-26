@@ -24,3 +24,33 @@ const widths = [
   ],
   s = 'bbbcccdddaaa';
 console.log(numberOfLines(widths, s));
+
+function lemonadeChange(bills: number[]): boolean {
+  const currentMoney = {
+    5: 0,
+    10: 0,
+    20: 0,
+  };
+  for (const bill of bills) {
+    if (bill === 5) {
+      currentMoney[5]++;
+    } else if (bill === 10) {
+      if (currentMoney[5] === 0) return false;
+      currentMoney[5]--;
+      currentMoney[10]++;
+    } else if (bill === 20) {
+      if (currentMoney[5] >= 3) {
+        currentMoney[20]++;
+        currentMoney[5] = currentMoney[5] - 3;
+        continue;
+      }
+      if (currentMoney[5] >= 2 && currentMoney[10] >= 1) {
+        currentMoney[20]++;
+        currentMoney[5] = currentMoney[5] - 2;
+        currentMoney[10] = currentMoney[10] - 1;
+      }
+      return false;
+    }
+  }
+  return true;
+}
