@@ -1,0 +1,1 @@
+nums[i + k] - nums[i + k - 1]
