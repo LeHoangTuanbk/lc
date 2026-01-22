@@ -32,3 +32,4 @@ Input: input = "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"
 Output: 20
 Explanation: We have only one file, and the absolute path is "dir/subdir2/file.ext" of length 20.
 */
+export function lengthLongestPath(input: string): number {}
