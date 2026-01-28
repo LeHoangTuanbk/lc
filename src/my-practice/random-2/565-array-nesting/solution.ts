@@ -1,0 +1,59 @@
+/* 
+565. Array Nesting
+Medium
+Topics
+premium lock icon
+Companies
+You are given an integer array nums of length n where nums is a permutation of the numbers in the range [0, n - 1].
+
+You should build a set s[k] = {nums[k], nums[nums[k]], nums[nums[nums[k]]], ... } subjected to the following rule:
+
+The first element in s[k] starts with the selection of the element nums[k] of index = k.
+The next element in s[k] should be nums[nums[k]], and then nums[nums[nums[k]]], and so on.
+We stop adding right before a duplicate element occurs in s[k].
+Return the longest length of a set s[k].
+
+ 
+
+Example 1:
+
+Input: nums = [5,4,0,3,1,6,2]
+Output: 4
+Explanation: 
+nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
+One of the longest sets s[k]:
+s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
+Example 2:
+
+Input: nums = [0,1,2]
+Output: 1
+
+
+*/
+
+function arrayNesting(nums: number[]): number {
+  const n = nums.length;
+
+  const state = Array(n).fill(0); // 0: unvisited, 1: visiting, 2: visited
+  const depth = Array(n).fill(0);
+  let ans = 0;
+  const dfs = (u: number, d: number) => {
+    state[u] = 1;
+    depth[u] = d;
+
+    const v = nums[u];
+    if (state[v] === 0) {
+      dfs(v, d + 1);
+    } else if (state[v] === 1) {
+      ans = Math.max(ans, d - depth[v] + 1);
+    }
+    state[u] = 2;
+  };
+
+  for (let i = 0; i < n; i++) {
+    if (state[i] === 0) {
+      dfs(i, 0);
+    }
+  }
+  return ans;
+}
