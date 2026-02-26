@@ -49,6 +49,5 @@ function widthOfBinaryTree(root: TreeNode | null): number {
       maxWidth = width;
     }
   }
-
   return Number(maxWidth);
 }

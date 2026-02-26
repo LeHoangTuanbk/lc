@@ -13,7 +13,7 @@ export function findFrequentTreeSum(root: TreeNode | null): number[] {
   }
   postOrderTraversal(root);
   const res: number[] = [];
-  for (const [sum, f] of sumMap.entries()) {
+  for (const [sum, f] of sumMap) {
     if (f === maxFreq) {
       res.push(sum);
     }
